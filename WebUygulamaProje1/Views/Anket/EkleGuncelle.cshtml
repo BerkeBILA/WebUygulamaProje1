@@ -1,0 +1,80 @@
+﻿@model Anket
+
+
+<form method="post" enctype="multipart/form-data">
+	<input asp-for="ResimUrl" hidden />
+	<div class="row">
+		<div class="col-10">
+
+			<div class="border p-3 mt-5">
+				<div class="row pb-3">
+					<h2 class="text-primary">@(Model == null ? "Anket Ekle" : "Anket Güncelle")</h2>
+					</hr>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="AnketAdi" class="p-0"></label>
+					<input asp-for="AnketAdi" class="form-control" />
+					<span asp-validation-for="AnketAdi" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="AnketTuruId" class="p-0"></label>
+					<select asp-for="AnketTuruId" asp-items="ViewBag.AnketTuruList" class="form-select">
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Soru1" class="p-0"></label>
+					<input asp-for="Soru1" class="form-control" />
+					<span asp-validation-for="Soru1" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Soru2" class="p-0"></label>
+					<input asp-for="Soru2" class="form-control" />
+					<span asp-validation-for="Soru2" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="Soru3" class="p-0"></label>
+					<input asp-for="Soru3" class="form-control" />
+					<span asp-validation-for="Soru3" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ResimUrl" class="p-0"></label>
+					<input type="file" name="file" class="form-control" />
+				</div>
+
+				@if (Model != null)
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Güncelle</button>
+				}
+				else
+				{
+					<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Anket Ekle</button>
+				}
+
+				<a asp-controller="Anket" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+					Anketlere Geri Dön
+				</a>
+
+			</div>
+
+		</div>
+		<div class="col-2">
+			@if (Model != null)
+			{
+				<img src="@Model.ResimUrl" width="100%"
+					 style="border-radius:7px; border:1px solid #bbb9b9" />
+			}
+		</div>
+	</div>
+
+
+
+
+
+</form>
+

@@ -1,0 +1,89 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Kayıt ol";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="text-center">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Yeni bir hesap oluştur.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="isim@gmail.com" />
+                <label asp-for="Input.Email">Mail</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="Yeni Şifre" aria-required="true" placeholder="Şifre" />
+                <label asp-for="Input.Password">Şifre</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="Yeni Şifre" aria-required="true" placeholder="Şifre" />
+                <label asp-for="Input.ConfirmPassword">Şifreyi Onayla</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Ogrencino" class="form-control" aria-required="true" placeholder="20221129---" />
+                <label asp-for="Input.Ogrencino">Ogrenci No</label>
+                <span asp-validation-for="Input.Ogrencino" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Adres" class="form-control" placeholder="Ankara" />
+                <label asp-for="Input.Adres">Adres</label>
+                <span asp-validation-for="Input.Adres" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Fakulte" class="form-control" placeholder="Fen Fakültesi" />
+                <label asp-for="Input.Fakulte">Fakülte</label>
+                <span asp-validation-for="Input.Fakulte" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Bolum" class="form-control" placeholder="Bilgisayar Programcılığı" />
+                <label asp-for="Input.Bolum">Bölüm</label>
+                <span asp-validation-for="Input.Bolum" class="text-danger"></span>
+            </div>
+
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            
+            
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        
+                           
+                       
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

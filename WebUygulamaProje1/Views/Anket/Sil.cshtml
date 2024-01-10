@@ -1,0 +1,42 @@
+﻿@model Anket
+
+
+<form method="post">
+	<input asp-for="Id" hidden />
+	<div class="border p-3 mt-5">
+		<div class="row pb-3">
+			<h2 class="text-primary">Anket Sil</h2>
+			</hr>
+		</div>
+
+
+		<div class="mb-3">
+			<label asp-for="AnketAdi" class="p-0"></label>
+			<input asp-for="AnketAdi" disabled class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Soru1" class="p-0"></label>
+			<input asp-for="Soru1" disabled class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Soru2" class="p-0"></label>
+			<input asp-for="Soru2" disabled class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Soru3" class="p-0"></label>
+			<input asp-for="Soru3" disabled class="form-control" />
+		</div>
+
+		<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Anket Sil</button>
+
+		<a asp-controller="Anket" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+			Anketlere Geri Dön
+		</a>
+
+	</div>
+
+</form>
+

@@ -1,0 +1,89 @@
+﻿@using WebUygulamaProje1.Utility;
+@model List<Anket>
+
+@if (TempData["basarili"] != null)
+{
+    <h2 style="color:red">@TempData["basarili"]</h2>
+}
+
+
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div class="text-center">
+            <h1>Anketler</h1>
+        </div>
+    </div>
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>
+                    
+                </th>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Anket Adi
+                </th>
+                <th>
+                    Soru 1
+                </th>
+                <th>
+                    Soru 2
+                </th>
+                <th>
+                    Soru 3
+                </th>
+                <th>
+                    Anket Türü
+                </th>
+                @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+                <th>
+
+                </th>
+                    }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var anket in Model)
+            {
+                <tr>
+                    <td align="center" valign="middle">
+                        <img src="@anket.ResimUrl" style="border-radius : 7px; border:1px solid #bbb9b9;
+                            max-width : 145px; max: 275px;"/>
+                    </td>
+                    <td align ="center" valign="middle">@anket.Id</td>
+                    <td align="center" valign="middle">@anket.AnketAdi</td>
+                    <td align="center" valign="middle">@anket.Soru1</td>
+                    <td align="center" valign="middle">@anket.Soru2</td>
+                    <td align="center" valign="middle">@anket.Soru3</td>
+                    <td align="center" valign="middle">@anket.AnketTuru.Ad</td>
+
+                    @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+
+                        <td align="center" valign="middle">
+                            <a asp-controller="Anket" asp-action="EkleGuncelle" asp-route-id="@anket.Id" type="button" class="btn btn-success" style="width:250px">Güncelle</a>
+                        </td>
+                        <td align="center" valign="middle">
+                            <a asp-controller="Anket" asp-action="Sil" asp-route-id="@anket.Id" type="button" class="btn btn-danger" style="width:250px">Sil</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (User.IsInRole(UserRoles.Role_Admin))
+    {
+
+        <div class="row pt-3 pb-2">
+            <div>
+                <a asp-controller="Anket" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">
+                    Yeni Anket Oluştur
+                </a>
+            </div>
+        </div>
+    }
+</div>

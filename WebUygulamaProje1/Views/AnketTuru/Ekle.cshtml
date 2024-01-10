@@ -1,0 +1,26 @@
+﻿@model AnketTuru
+
+<form method="post">
+
+	<div class="border p-3 mt-5">
+		<div class="row pb-3">
+			<h2 class="text-primary">Anket Türü Ekle</h2>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Ad" class="p-0"></label>
+			<input asp-for="Ad" type="text" class="form-control" />
+			<span asp-validation-for="Ad" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-primary" style="width:250px">Anket Türü Ekle</button>
+
+		<a asp-controller="AnketTuru" asp-action="Index" class="btn btn-primary" style="width:250px">
+			Anket Türlerine Geri Dön
+		</a>
+	</div>
+
+
+
+</form>
+
